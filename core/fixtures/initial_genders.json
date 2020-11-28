@@ -1,0 +1,18 @@
+[
+    {
+        "model": "core.gender",
+        "pk": 1,
+        "fields": {
+            "short_name": "M",
+            "long_name": "Masculino"
+        }
+    },
+    {
+        "model": "core.gender",
+        "pk": 2,
+        "fields": {
+            "short_name": "F",
+            "long_name": "Femenino"
+        }
+    }
+]
