@@ -1,0 +1,8 @@
+django
+djangorestframework
+Pillow
+psycopg2-binary
+mypy
+django-stubs
+djangorestframework-stubs
+django-stubs-ext
