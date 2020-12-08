@@ -1,0 +1,38 @@
+[
+    {
+        "model": "recipes.recipe",
+        "fields": {
+            "owner": 2,
+            "title": "Pirimbolo",
+            "portions": 4,
+            "ingredient_servings": [
+                1,
+                2
+            ]
+        }
+    },
+    {
+        "model": "recipes.recipe",
+        "fields": {
+            "owner": 2,
+            "title": "Chucuflito",
+            "portions": 4,
+            "ingredient_servings": [
+                1,
+                2
+            ]
+        }
+    },
+    {
+        "model": "recipes.recipe",
+        "fields": {
+            "owner": 2,
+            "title": "La pindonga",
+            "portions": 4,
+            "ingredient_servings": [
+                1,
+                2
+            ]
+        }
+    }
+]
