@@ -41,10 +41,6 @@ class Recipe(models.Model):
     def images(self):
         return RecipeImage.objects.filter(recipe=self)
 
-    @property
-    def primary_image(self):
-        return RecipeImage.objects.filter(recipe=self, is_primary=True).first()
-
     def __str__(self) -> str:
         return "Receta: {} | Porciones: {}".format(self.title, self.portions)
 
@@ -55,15 +51,30 @@ class Recipe(models.Model):
 
 
 def recipe_upload_path(instance, filename):
-
-    # file will be uploaded to MEDIA_ROOT/user_<id>/recipe_<id>/<filename>
-    return 'user_{0}/recipe_{2}/{1}'.format(instance.user.id, instance.recipe.id, filename)
+    # los archivos se guardan en MEDIA_ROOT/user_<id>/recipe_<id>/<filename>
+    return 'user_{}/recipe_{}/{}'.format(instance.user.id, instance.recipe.id, filename)
 
 
 class RecipeImage(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, verbose_name="Receta")
     image = models.ImageField(upload_to=recipe_upload_path, verbose_name="Imagen de muestra")
     is_primary = models.BooleanField(verbose_name="Es la imagen de presentación?")
+
+    def __str__(self) -> str:
+        return "Imagen de {}".format(self.recipe.title)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        primary_images = RecipeImage.objects.exclude(id=self.id, recipe=self.recipe).filter(is_primary=True)
+
+        if primary_images.exists() and self.is_primary:
+            primary_images.update(is_primary=False)
+
+    class Meta:
+        verbose_name = "Imagen de receta"
+        verbose_name_plural = "Imagenes de receta"
+        app_label = "recipes"
 
 
 class Step(models.Model):

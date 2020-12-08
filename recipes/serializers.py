@@ -34,7 +34,7 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ["owner", "title", "portions", "ingredient_servings", "images", "primary_image"]
+        fields = ["id", "owner", "title", "portions", "ingredient_servings", "images"]
 
 
 class RecipeViewSet(viewsets.ModelViewSet):
@@ -43,6 +43,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
 
 class RecipeImageSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = RecipeImage
         fields = ["recipe", "image", "is_primary"]
