@@ -29,6 +29,7 @@ class IngredientServingViewSet(viewsets.ModelViewSet):
 
 
 class RecipeSerializer(serializers.ModelSerializer):
+    id = serializers.ReadOnlyField()
     owner = UserSerializer()
     ingredient_servings = IngredientServingSerializer(many=True)
 
