@@ -8,6 +8,7 @@ import {
   Route, Switch
 } from "react-router-dom";
 import BaseLayout from "./components/layouts/BaseLayout";
+import Home from "./pages/Home";
 
 interface IAppProps { }
 
@@ -16,7 +17,7 @@ const App: React.FC<IAppProps> = props => (
     <ChakraProvider theme={theme}>
       <BaseLayout>
         <Switch>
-
+          <Route exact path="/" component={Home} />
         </Switch>
       </BaseLayout>
     </ChakraProvider>
